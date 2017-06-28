@@ -1,8 +1,8 @@
 PS_PATH  = -I../../../src
 
 CCC = mpicxx
-CFLAGS = -O3 # -ffast-math -funroll-loops -DMPICH_IGNORE_CXX_SEEK #-Wall
-CFLAGS += -DPARTICLE_SIMULATOR_THREAD_PARALLEL -fopenmp
+CFLAGS = -O0  -DMPICH_IGNORE_CXX_SEEK # -ffast-math -funroll-loops -DMPICH_IGNORE_CXX_SEEK #-Wall
+#CFLAGS += -DPARTICLE_SIMULATOR_THREAD_PARALLEL -fopenmp
 CFLAGS += -DPARTICLE_SIMULATOR_MPI_PARALLEL
 
 check:

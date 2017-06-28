@@ -1,6 +1,6 @@
 //#include "class.hpp"
 //#include "force.hpp"
-#include<particle_simulator.hpp>
+#include<FDPS_particle_simulator.hpp>
 #include "cuda_pointer.h"
 #include "force_gpu_cuda.hpp"
 

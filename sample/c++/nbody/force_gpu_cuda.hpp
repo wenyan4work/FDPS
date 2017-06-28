@@ -1,6 +1,6 @@
 #pragma once
 #include <iostream>
-#include <particle_simulator.hpp>
+#include <FDPS_particle_simulator.hpp>
 #include <helper_cuda.h>
 #include "user-defined.hpp"
 

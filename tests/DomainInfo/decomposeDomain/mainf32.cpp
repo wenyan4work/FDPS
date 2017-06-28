@@ -54,7 +54,7 @@ int main(int argc, char **argv)
     PS::F64vec pcen(1.d, -10.d, 199.8d);
     PS::U32    seed = PS::Comm::getRank();    
     PS::S32    code = 0;
-    
+   { 
     PS::DomainInfo dinfo;
     PS::ParticleSystem<BasicParticle32> bp;
 
@@ -68,7 +68,7 @@ int main(int argc, char **argv)
     bp.exchangeParticle(dinfo);
 
     code = (dinfo.checkDecomposeDomain(bp)) ? code : (code | 1);
-
+   }
     PS::Finalize();       
 
     return code;

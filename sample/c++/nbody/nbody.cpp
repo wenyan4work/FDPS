@@ -2,7 +2,7 @@
 #include<fstream>
 #include<unistd.h>
 #include<sys/stat.h>
-#include<particle_simulator.hpp>
+#include<FDPS_particle_simulator.hpp>
 #ifdef ENABLE_PHANTOM_GRAPE_X86
 #include <gp5util.h>
 #endif

@@ -156,6 +156,33 @@ namespace ParticleSimulator{
             boundary_condition_ = BOUNDARY_CONDITION_OPEN;
         }
 
+         ~DomainInfo(){
+        	// free these pointers;
+        	std::cout<<"domain info destructor: "<<ParticleSimulator::Comm::getRank()<<std::endl;
+        	delete [] pos_sample_tot_;
+        	pos_sample_tot_=NULL;
+        	delete [] pos_sample_loc_;
+        	pos_sample_loc_=NULL;
+
+        	delete [] pos_domain_;
+        	pos_domain_=NULL;
+        	delete [] pos_domain_temp_;
+        	pos_domain_temp_=NULL;
+
+        	delete [] n_smp_array_;
+        	n_smp_array_=NULL;
+        	delete [] n_smp_disp_array_;
+        	n_smp_disp_array_=NULL;
+//            F64vec * pos_sample_tot_;
+//            F64vec * pos_sample_loc_;
+//
+//            F64ort * pos_domain_;
+//            F64ort * pos_domain_temp_;
+//
+//            S32 * n_smp_array_;
+//            S32 * n_smp_disp_array_;
+        }
+
         void initialize(const F32 coef_ema = 1.0){
             if( coef_ema < 0.0 || coef_ema > 1.0){
                 PARTICLE_SIMULATOR_PRINT_ERROR("The smoothing factor of an exponential moving average is must between 0 and 1.");

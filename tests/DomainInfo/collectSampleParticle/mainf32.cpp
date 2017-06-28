@@ -56,7 +56,7 @@ int main(int argc, char **argv)
     PS::S32    code  = 0;
     bool success_loc = false;
     bool success_glb = false;
-    
+   { 
     PS::DomainInfo dinfo;
     PS::ParticleSystem<BasicParticle32> bp;
 
@@ -74,7 +74,7 @@ int main(int argc, char **argv)
     success_loc = dinfo.checkCollectSampleParticleAverage(bp);
     success_glb = PS::Comm::synchronizeConditionalBranchAND(success_loc);
     code = (success_glb) ? code : (code | (1 << 1));
-
+   }
     PS::Finalize();       
 
     return code;

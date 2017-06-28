@@ -53,7 +53,7 @@ int main(int argc, char **argv)
     PS::F64vec pcen(1.d, -10.d, 199.8d);
     PS::U32    seed = PS::Comm::getRank();    
     PS::S32    code = 0;
-    
+   { 
     PS::DomainInfo dinfo;
     PS::ParticleSystem<BasicParticle64> bp;
 
@@ -66,7 +66,7 @@ int main(int argc, char **argv)
 
     code = (dinfo.checkCollectSampleParticleSubset(bp)) ? code : (code | 1);
     code = (dinfo.checkCollectSampleParticleAverage(bp)) ? code : (code | (1 << 1));
-
+   }
     PS::Finalize();       
 
     return code;
