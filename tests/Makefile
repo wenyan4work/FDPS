@@ -1,7 +1,7 @@
-PS_PATH  = -I../../../src_parallel
+PS_PATH  = -I../../../src
 
-CCC = mpicxx-openmpi-gcc49
-CFLAGS = -O3 -ffast-math -funroll-loops -DMPICH_IGNORE_CXX_SEEK #-Wall
+CCC = mpicxx
+CFLAGS = -O3 # -ffast-math -funroll-loops -DMPICH_IGNORE_CXX_SEEK #-Wall
 CFLAGS += -DPARTICLE_SIMULATOR_THREAD_PARALLEL -fopenmp
 CFLAGS += -DPARTICLE_SIMULATOR_MPI_PARALLEL
 

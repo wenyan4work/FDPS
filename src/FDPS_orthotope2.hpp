@@ -1,7 +1,7 @@
 #pragma once
 
 #include<limits>
-#include"vector2.hpp"
+#include"FDPS_vector2.hpp"
 
 // T must be F32 or F64.
 namespace ParticleSimulator{

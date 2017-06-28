@@ -2,7 +2,7 @@
 #include <vector>
 #include <cassert>
 
-#include <particle_simulator.hpp>
+#include "FDPS_particle_simulator.hpp"
 #include "../../basic_particle.hpp"
 #include "../check_domain_info.hpp"
 

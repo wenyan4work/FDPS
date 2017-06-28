@@ -3,8 +3,8 @@
 #include<cassert>
 #include<fstream>
 
-#include "MT.hpp"
-#include"ps_defs.hpp"
+#include "FDPS_MT.hpp"
+#include "FDPS_ps_defs.hpp"
 
 namespace ParticleSimulator{
     template<class Tptcl>

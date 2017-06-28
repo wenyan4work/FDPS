@@ -2,8 +2,8 @@
 
 #include<iostream>
 #include<iomanip>
-#include"vector3.hpp"
-#include"ps_defs.hpp"
+#include"FDPS_vector3.hpp"
+#include"FDPS_ps_defs.hpp"
 
 namespace ParticleSimulator{
 

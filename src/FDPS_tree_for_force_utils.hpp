@@ -60,7 +60,7 @@ static inline __m256 _mm256_set_m128_forgcc(__m128 hi, __m128 lo){
 
 #endif
 
-#include"stack.hpp"
+#include "FDPS_stack.hpp"
 
 namespace ParticleSimulator{
     inline void CalcNumberAndShiftOfImageDomain

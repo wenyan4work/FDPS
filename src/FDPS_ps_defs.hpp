@@ -19,13 +19,13 @@
 #include<omp.h>
 #endif
 
-#include"vector2.hpp"
-#include"vector3.hpp"
-#include"orthotope2.hpp"
-#include"orthotope3.hpp"
-#include"matrix_sym2.hpp"
-#include"matrix_sym3.hpp"
-#include"matrix2.hpp"
+#include "FDPS_vector2.hpp"
+#include "FDPS_vector3.hpp"
+#include "FDPS_orthotope2.hpp"
+#include "FDPS_orthotope3.hpp"
+#include "FDPS_matrix_sym2.hpp"
+#include "FDPS_matrix_sym3.hpp"
+#include "FDPS_matrix2.hpp"
 
 
 #define PS_DEBUG_CALL(func) \
@@ -81,7 +81,7 @@ namespace ParticleSimulator{
     }
 }
 
-#include"reallocatable_array.hpp"
+#include "FDPS_reallocatable_array.hpp"
 
 namespace ParticleSimulator{
     typedef int S32;
@@ -1636,6 +1636,5 @@ namespace ParticleSimulator{
 
 }
 
-#include"util.hpp"
-
-#include"timer.hpp"
+#include "FDPS_util.hpp"
+#include "FDPS_timer.hpp"
