@@ -958,11 +958,11 @@ namespace ParticleSimulator{
             }
             if(bc == BOUNDARY_CONDITION_PERIODIC_X) periodic_axis_[0] = true;
             else if(bc == BOUNDARY_CONDITION_PERIODIC_Y) periodic_axis_[1] = true;
-            else if(bc == BOUNDARY_CONDITION_PERIODIC_Z) periodic_axis_[1] = true;
-            else if(bc == BOUNDARY_CONDITION_PERIODIC_XY) periodic_axis_[0] = periodic_axis_[1] = true;
-            else if(bc == BOUNDARY_CONDITION_PERIODIC_XZ) periodic_axis_[0] = periodic_axis_[2] = true;
-            else if(bc == BOUNDARY_CONDITION_PERIODIC_YZ) periodic_axis_[1] = periodic_axis_[2] = true;
-            else if(bc == BOUNDARY_CONDITION_PERIODIC_XYZ) periodic_axis_[0] = periodic_axis_[1] = periodic_axis_[2] = true;
+            else if(bc == BOUNDARY_CONDITION_PERIODIC_Z) periodic_axis_[2] = true;
+            else if(bc == BOUNDARY_CONDITION_PERIODIC_XY) {periodic_axis_[0] = true; periodic_axis_[1] = true;}
+            else if(bc == BOUNDARY_CONDITION_PERIODIC_XZ) {periodic_axis_[0] = true; periodic_axis_[2] = true;}
+            else if(bc == BOUNDARY_CONDITION_PERIODIC_YZ) {periodic_axis_[1] = true; periodic_axis_[2] = true;}
+            else if(bc == BOUNDARY_CONDITION_PERIODIC_XYZ) {periodic_axis_[0] = true; periodic_axis_[1] = true; periodic_axis_[2] = true;}
         }
 
         S32 getBoundaryCondition() const { return boundary_condition_; }
