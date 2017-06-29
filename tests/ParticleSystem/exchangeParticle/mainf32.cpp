@@ -45,6 +45,7 @@ void writeAscii(Tptcl & system)
 
 int main(int argc, char **argv)
 {
+    MPI_Init(&argc,&argv); 
     PS::Initialize(argc, argv);
 
     PS::S32    nmem = 131072;
@@ -69,6 +70,7 @@ int main(int argc, char **argv)
     code = (bp.checkExchangeParticleSumOfNumberOfParticle(dinfo, ntot)) ? code : (code | (1 << 1));
 
     PS::Finalize();       
+    MPI_Finalize();
 
     return code;
 }

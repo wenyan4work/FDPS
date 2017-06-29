@@ -847,10 +847,10 @@ namespace ParticleSimulator{
 
 
     static inline void Initialize(int &argc, char **&argv){
-	
-#ifdef PARTICLE_SIMULATOR_MPI_PARALLEL
-        MPI::Init(argc, argv);
-#endif
+        Comm::barrier();
+// #ifdef PARTICLE_SIMULATOR_MPI_PARALLEL
+//         MPI::Init(argc, argv);
+// #endif
 
 /*
         std::cerr<<"argc="<<argc<<std::endl;
@@ -921,10 +921,10 @@ namespace ParticleSimulator{
     }
 
     static inline void Finalize(){
-#ifdef PARTICLE_SIMULATOR_MPI_PARALLEL
+// #ifdef PARTICLE_SIMULATOR_MPI_PARALLEL
 
-        MPI::Finalize();
-#endif
+//         MPI::Finalize();
+// #endif
         bool monar = false;
         if(Comm::getRank() == 0) {
             if(monar){
