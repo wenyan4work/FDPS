@@ -1,8 +1,8 @@
 PS_PATH  = -I../../../src
 
 CCC = mpicxx
-CFLAGS = -O0  -DMPICH_IGNORE_CXX_SEEK # -ffast-math -funroll-loops -DMPICH_IGNORE_CXX_SEEK #-Wall
-#CFLAGS += -DPARTICLE_SIMULATOR_THREAD_PARALLEL -fopenmp
+CFLAGS = -O3 -march=native  #-DMPICH_IGNORE_CXX_SEEK # -ffast-math -funroll-loops -DMPICH_IGNORE_CXX_SEEK #-Wall
+CFLAGS += -DPARTICLE_SIMULATOR_THREAD_PARALLEL -fopenmp
 CFLAGS += -DPARTICLE_SIMULATOR_MPI_PARALLEL
 
 check:
@@ -24,3 +24,5 @@ allclean:
 	make -C DomainInfo allclean
 	make -C ParticleSystem allclean
 
+# information for MPICH_IGNORE_CXX_SEEK
+# https://software.intel.com/en-us/articles/intel-mpi-library-for-linux-running-list-of-known-issues#A3
