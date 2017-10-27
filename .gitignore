@@ -2,3 +2,5 @@ mainf32
 mainf64
 .vscode/
 info.plist
+RunTest/
+BugReport/PeriodicSymmetrySearch/SphereTest.X.dSYM
