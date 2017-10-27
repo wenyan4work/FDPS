@@ -696,21 +696,20 @@ namespace ParticleSimulator{
 */
 
 	    if(first_call_by_decomposeDomain) {
-            first_call_by_decomposeDomain = false;
-            for(S32 i = 0; i < n_proc_glb; i++) {
-                //std::cout<<"pos_domain_temp_[i](first)= "<<pos_domain_temp_[i]<<std::endl;
-                pos_domain_[i].low_  = pos_domain_temp_[i].low_;
-                pos_domain_[i].high_ = pos_domain_temp_[i].high_;
-            }
+                first_call_by_decomposeDomain = false;
+                for(S32 i = 0; i < n_proc_glb; i++) {
+                    //std::cout<<"pos_domain_temp_[i](first)= "<<pos_domain_temp_[i]<<std::endl;
+                    pos_domain_[i].low_  = pos_domain_temp_[i].low_;
+                    pos_domain_[i].high_ = pos_domain_temp_[i].high_;
+                }
 	    } else {
-            for(S32 i = 0; i < n_proc_glb; i++) {
-                //std::cout<<"pos_domain_temp_[i](other)= "<<pos_domain_temp_[i]<<std::endl;
-                pos_domain_[i].low_  = (F64)coef_ema_ * pos_domain_temp_[i].low_ 
-                    + (F64)(1. - coef_ema_) * pos_domain_[i].low_;
-                pos_domain_[i].high_ = (F64)coef_ema_ * pos_domain_temp_[i].high_ 
-                    + (F64)(1. - coef_ema_) * pos_domain_[i].high_;
-                
-            }
+                for(S32 i = 0; i < n_proc_glb; i++) {
+                    //std::cout<<"pos_domain_temp_[i](other)= "<<pos_domain_temp_[i]<<std::endl;
+                    pos_domain_[i].low_  = (F64)coef_ema_ * pos_domain_temp_[i].low_ 
+                        + (F64)(1. - coef_ema_) * pos_domain_[i].low_;
+                    pos_domain_[i].high_ = (F64)coef_ema_ * pos_domain_temp_[i].high_ 
+                        + (F64)(1. - coef_ema_) * pos_domain_[i].high_;
+                }
 	    }
         //time_profile_.decompose_domain += GetWtime() - time_offset;
 #endif // PARTICLE_SIMULATOR_MPI_PARALLEL
@@ -826,7 +825,7 @@ namespace ParticleSimulator{
                 // ------------------------------------------
                 // --- process first ------------------------
                 if(first_call_by_decomposeDomain) {
-                    first_call_by_decomposeDomain = false;
+                    //first_call_by_decomposeDomain = false;
                     for(S32 i = 0; i < nproc; i++) {
                         //std::cout<<"pos_domain_temp_[i](first)= "<<pos_domain_temp_[i]<<std::endl;
                         pos_domain_[i].low_  = pos_domain_temp_[i].low_;
@@ -849,6 +848,10 @@ namespace ParticleSimulator{
             // ****************************************************
             // *** broad cast pos_domain_ *************************
             MPI::COMM_WORLD.Bcast(pos_domain_, nproc, GetDataType<F64ort>(), 0);
+            if(first_call_by_decomposeDomain) {
+                first_call_by_decomposeDomain = false;            
+                MPI::COMM_WORLD.Bcast(&first_call_by_decomposeDomain, 1, GetDataType<bool>(), 0);
+            }
             //std::cout<<"end of bcast: "<<"time: "<<GetWtime() - Tbegin<<std::endl;
             //Comm::broadcast(pos_domain_, nproc);
             // ****************************************************
@@ -959,10 +962,17 @@ namespace ParticleSimulator{
             if(bc == BOUNDARY_CONDITION_PERIODIC_X) periodic_axis_[0] = true;
             else if(bc == BOUNDARY_CONDITION_PERIODIC_Y) periodic_axis_[1] = true;
             else if(bc == BOUNDARY_CONDITION_PERIODIC_Z) periodic_axis_[2] = true;
+<<<<<<< HEAD:src/FDPS_domain_info.hpp
             else if(bc == BOUNDARY_CONDITION_PERIODIC_XY) {periodic_axis_[0] = true; periodic_axis_[1] = true;}
             else if(bc == BOUNDARY_CONDITION_PERIODIC_XZ) {periodic_axis_[0] = true; periodic_axis_[2] = true;}
             else if(bc == BOUNDARY_CONDITION_PERIODIC_YZ) {periodic_axis_[1] = true; periodic_axis_[2] = true;}
             else if(bc == BOUNDARY_CONDITION_PERIODIC_XYZ) {periodic_axis_[0] = true; periodic_axis_[1] = true; periodic_axis_[2] = true;}
+=======
+            else if(bc == BOUNDARY_CONDITION_PERIODIC_XY) periodic_axis_[0] = periodic_axis_[1] = true;
+            else if(bc == BOUNDARY_CONDITION_PERIODIC_XZ) periodic_axis_[0] = periodic_axis_[2] = true;
+            else if(bc == BOUNDARY_CONDITION_PERIODIC_YZ) periodic_axis_[1] = periodic_axis_[2] = true;
+            else if(bc == BOUNDARY_CONDITION_PERIODIC_XYZ) periodic_axis_[0] = periodic_axis_[1] = periodic_axis_[2] = true;
+>>>>>>> 6c6420e5d9bb9a50fcbede7b22d47a30a03ef4fb:src/domain_info.hpp
         }
 
         S32 getBoundaryCondition() const { return boundary_condition_; }
