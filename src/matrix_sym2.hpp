@@ -3,7 +3,7 @@
 #include<iostream>
 #include<iomanip>
 #include<cmath>
-#include"FDPS_vector2.hpp"
+#include"vector2.hpp"
 
 namespace ParticleSimulator{
     template<class T>

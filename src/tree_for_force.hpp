@@ -8,16 +8,9 @@
 #include<set>
 #endif
 
-<<<<<<< HEAD:src/FDPS_tree_for_force.hpp
-#include "FDPS_sort.hpp"
-#include "FDPS_tree.hpp"
-
-#include "FDPS_tree_for_force_utils.hpp"
-=======
 #include<sort.hpp>
 #include<tree.hpp>
 #include<tree_for_force_utils.hpp>
->>>>>>> 6c6420e5d9bb9a50fcbede7b22d47a30a03ef4fb:src/tree_for_force.hpp
 
 namespace ParticleSimulator{
     ///////////////////////////////////////
@@ -1362,8 +1355,8 @@ namespace ParticleSimulator{
 
 
 }
-#include "FDPS_tree_for_force_impl.hpp"
-#include "FDPS_tree_for_force_check_impl.hpp"
+#include"tree_for_force_impl.hpp"
+#include"tree_for_force_check_impl.hpp"
 
 
 

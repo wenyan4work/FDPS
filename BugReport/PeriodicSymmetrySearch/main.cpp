@@ -2,7 +2,7 @@
 #include <iostream>
 #include <vector>
 
-#include "FDPS_particle_simulator.hpp"
+#include "particle_simulator.hpp"
 
 class forceNearEP {
 public:

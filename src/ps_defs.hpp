@@ -19,13 +19,13 @@
 #include<omp.h>
 #endif
 
-#include "FDPS_vector2.hpp"
-#include "FDPS_vector3.hpp"
-#include "FDPS_orthotope2.hpp"
-#include "FDPS_orthotope3.hpp"
-#include "FDPS_matrix_sym2.hpp"
-#include "FDPS_matrix_sym3.hpp"
-#include "FDPS_matrix2.hpp"
+#include"vector2.hpp"
+#include"vector3.hpp"
+#include"orthotope2.hpp"
+#include"orthotope3.hpp"
+#include"matrix_sym2.hpp"
+#include"matrix_sym3.hpp"
+#include"matrix2.hpp"
 
 
 #define PS_DEBUG_CALL(func) \
@@ -81,7 +81,7 @@ namespace ParticleSimulator{
     }
 }
 
-#include "FDPS_reallocatable_array.hpp"
+#include"reallocatable_array.hpp"
 
 namespace ParticleSimulator{
     typedef int S32;
@@ -883,10 +883,10 @@ namespace ParticleSimulator{
 
 
     static inline void Initialize(int &argc, char **&argv){
-        Comm::barrier();
-// #ifdef PARTICLE_SIMULATOR_MPI_PARALLEL
-//         MPI::Init(argc, argv);
-// #endif
+	
+#ifdef PARTICLE_SIMULATOR_MPI_PARALLEL
+        MPI::Init(argc, argv);
+#endif
 
 /*
         std::cerr<<"argc="<<argc<<std::endl;
@@ -957,10 +957,10 @@ namespace ParticleSimulator{
     }
 
     static inline void Finalize(){
-// #ifdef PARTICLE_SIMULATOR_MPI_PARALLEL
+#ifdef PARTICLE_SIMULATOR_MPI_PARALLEL
 
-//         MPI::Finalize();
-// #endif
+        MPI::Finalize();
+#endif
         bool monar = false;
         if(Comm::getRank() == 0) {
             if(monar){
@@ -1672,5 +1672,6 @@ namespace ParticleSimulator{
 
 }
 
-#include "FDPS_util.hpp"
-#include "FDPS_timer.hpp"
+#include"util.hpp"
+
+#include"timer.hpp"

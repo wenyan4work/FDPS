@@ -156,33 +156,6 @@ namespace ParticleSimulator{
             boundary_condition_ = BOUNDARY_CONDITION_OPEN;
         }
 
-         ~DomainInfo(){
-        	// free these pointers;
-        	std::cout<<"domain info destructor: "<<ParticleSimulator::Comm::getRank()<<std::endl;
-        	delete [] pos_sample_tot_;
-        	pos_sample_tot_=NULL;
-        	delete [] pos_sample_loc_;
-        	pos_sample_loc_=NULL;
-
-        	delete [] pos_domain_;
-        	pos_domain_=NULL;
-        	delete [] pos_domain_temp_;
-        	pos_domain_temp_=NULL;
-
-        	delete [] n_smp_array_;
-        	n_smp_array_=NULL;
-        	delete [] n_smp_disp_array_;
-        	n_smp_disp_array_=NULL;
-//            F64vec * pos_sample_tot_;
-//            F64vec * pos_sample_loc_;
-//
-//            F64ort * pos_domain_;
-//            F64ort * pos_domain_temp_;
-//
-//            S32 * n_smp_array_;
-//            S32 * n_smp_disp_array_;
-        }
-
         void initialize(const F32 coef_ema = 1.0){
             if( coef_ema < 0.0 || coef_ema > 1.0){
                 PARTICLE_SIMULATOR_PRINT_ERROR("The smoothing factor of an exponential moving average is must between 0 and 1.");
@@ -962,17 +935,10 @@ namespace ParticleSimulator{
             if(bc == BOUNDARY_CONDITION_PERIODIC_X) periodic_axis_[0] = true;
             else if(bc == BOUNDARY_CONDITION_PERIODIC_Y) periodic_axis_[1] = true;
             else if(bc == BOUNDARY_CONDITION_PERIODIC_Z) periodic_axis_[2] = true;
-<<<<<<< HEAD:src/FDPS_domain_info.hpp
-            else if(bc == BOUNDARY_CONDITION_PERIODIC_XY) {periodic_axis_[0] = true; periodic_axis_[1] = true;}
-            else if(bc == BOUNDARY_CONDITION_PERIODIC_XZ) {periodic_axis_[0] = true; periodic_axis_[2] = true;}
-            else if(bc == BOUNDARY_CONDITION_PERIODIC_YZ) {periodic_axis_[1] = true; periodic_axis_[2] = true;}
-            else if(bc == BOUNDARY_CONDITION_PERIODIC_XYZ) {periodic_axis_[0] = true; periodic_axis_[1] = true; periodic_axis_[2] = true;}
-=======
             else if(bc == BOUNDARY_CONDITION_PERIODIC_XY) periodic_axis_[0] = periodic_axis_[1] = true;
             else if(bc == BOUNDARY_CONDITION_PERIODIC_XZ) periodic_axis_[0] = periodic_axis_[2] = true;
             else if(bc == BOUNDARY_CONDITION_PERIODIC_YZ) periodic_axis_[1] = periodic_axis_[2] = true;
             else if(bc == BOUNDARY_CONDITION_PERIODIC_XYZ) periodic_axis_[0] = periodic_axis_[1] = periodic_axis_[2] = true;
->>>>>>> 6c6420e5d9bb9a50fcbede7b22d47a30a03ef4fb:src/domain_info.hpp
         }
 
         S32 getBoundaryCondition() const { return boundary_condition_; }
