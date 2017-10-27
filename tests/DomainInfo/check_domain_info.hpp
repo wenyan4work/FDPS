@@ -125,16 +125,10 @@ namespace ParticleSimulator {
         S32 nloc = psys.getNumberOfParticleLocal();
         S32 ntot = Comm::getSum(nloc);
 
-        std::cout<<"nloc "<<nloc<<" from rank "<<PS::Comm::getRank()<<std::endl;
-        std::cout<<"ntot "<<ntot<<" from rank "<<PS::Comm::getRank()<<std::endl;
-
         bool success_loc = false;
-        if(nloc == ntot / size)   // check average decompose
+        if(nloc == ntot / size)
             success_loc = true;
         bool success_glb = Comm::synchronizeConditionalBranchAND(success_loc);
-
-        std::cout<<"success_loc "<<success_loc<<" from rank "<<PS::Comm::getRank()<<std::endl;
-        std::cout<<"success_glb "<<success_glb<<" from rank "<<PS::Comm::getRank()<<std::endl;
 
         return success_glb;
     }

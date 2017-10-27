@@ -2,7 +2,7 @@
 #include <vector>
 #include <cassert>
 
-#include "FDPS_particle_simulator.hpp"
+#include <particle_simulator.hpp>
 #include "../../basic_particle.hpp"
 #include "../check_domain_info.hpp"
 
@@ -45,7 +45,6 @@ void writeAscii(Tptcl & system)
 
 int main(int argc, char **argv)
 {
-    MPI_Init(&argc,&argv);
     PS::Initialize(argc, argv);
 
     PS::S32    nmem = 131072;
@@ -57,7 +56,7 @@ int main(int argc, char **argv)
     PS::S32    code  = 0;
     bool success_loc = false;
     bool success_glb = false;
-   { 
+    
     PS::DomainInfo dinfo;
     PS::ParticleSystem<BasicParticle32> bp;
 
@@ -75,9 +74,8 @@ int main(int argc, char **argv)
     success_loc = dinfo.checkCollectSampleParticleAverage(bp);
     success_glb = PS::Comm::synchronizeConditionalBranchAND(success_loc);
     code = (success_glb) ? code : (code | (1 << 1));
-   }
+
     PS::Finalize();       
-    MPI_Finalize();
 
     return code;
 }

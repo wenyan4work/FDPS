@@ -5,6 +5,9 @@ CFLAGS = -O3 -march=native  #-DMPICH_IGNORE_CXX_SEEK # -ffast-math -funroll-loop
 CFLAGS += -DPARTICLE_SIMULATOR_THREAD_PARALLEL -fopenmp
 CFLAGS += -DPARTICLE_SIMULATOR_MPI_PARALLEL
 
+# for macports gcc with clang asm
+CFLAGS += -Wa,-q
+
 check:
 	make -C DomainInfo CCC="$(CCC)" CFLAGS="$(CFLAGS)" PS_PATH="$(PS_PATH)"
 	make -C ParticleSystem CCC="$(CCC)" CFLAGS="$(CFLAGS)" PS_PATH="$(PS_PATH)"

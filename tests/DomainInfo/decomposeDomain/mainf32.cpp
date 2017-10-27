@@ -2,7 +2,7 @@
 #include <vector>
 #include <cassert>
 
-#include "FDPS_particle_simulator.hpp"
+#include <particle_simulator.hpp>
 #include "../../basic_particle.hpp"
 #include "../check_domain_info.hpp"
 
@@ -45,7 +45,6 @@ void writeAscii(Tptcl & system)
 
 int main(int argc, char **argv)
 {
-    MPI_Init(&argc,&argv);
     PS::Initialize(argc, argv);
 
     PS::S32    nmem = 131072;
@@ -55,7 +54,7 @@ int main(int argc, char **argv)
     PS::F64vec pcen(1.d, -10.d, 199.8d);
     PS::U32    seed = PS::Comm::getRank();    
     PS::S32    code = 0;
-    { 
+    
     PS::DomainInfo dinfo;
     PS::ParticleSystem<BasicParticle32> bp;
 
@@ -69,9 +68,8 @@ int main(int argc, char **argv)
     bp.exchangeParticle(dinfo);
 
     code = (dinfo.checkDecomposeDomain(bp)) ? code : (code | 1);
-    std::cout<<"code"<<code<<std::endl;
-    }
+
     PS::Finalize();       
-    MPI_Finalize();
-    return 0;
+
+    return code;
 }
