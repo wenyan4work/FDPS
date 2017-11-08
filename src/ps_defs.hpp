@@ -16,7 +16,7 @@
 #endif
 
 #ifdef PARTICLE_SIMULATOR_THREAD_PARALLEL
-#include<omp.h>
+#include"omp.h"
 #endif
 
 #include"vector2.hpp"
