@@ -50,8 +50,8 @@ int main(int argc, char **argv)
     PS::S32    nmem = 131072;
     PS::S32    ntot = 65536;
     PS::S32    nave = 10000;
-    PS::F64    prad = 3.1d;
-    PS::F64vec pcen(1.d, -10.d, 199.8d);
+    PS::F64    prad = 3.1;
+    PS::F64vec pcen(1.0, -10.0, 199.8);
     PS::U32    seed = PS::Comm::getRank();    
     PS::S32    code = 0;
     
