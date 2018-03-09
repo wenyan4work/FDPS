@@ -105,8 +105,8 @@ namespace ParticleSimulator {
         pos_psys_dis   = CheckDomainInfo::calcPosStandardDeviation(cp_pos_psys, pos_psys_ave);
         pos_sample_ave = CheckDomainInfo::calcPosArithmeticMean(cp_pos_sample_loc);        
 
-        F64vec low  = pos_psys_ave - 3.d * pos_psys_dis;
-        F64vec high = pos_psys_ave + 3.d * pos_psys_dis;
+        F64vec low  = pos_psys_ave - 3.0 * pos_psys_dis;
+        F64vec high = pos_psys_ave + 3.0 * pos_psys_dis;
 
         bool success_loc = false;        
         if(low[0] <= pos_sample_ave[0] && pos_sample_ave[0] <= high[0]

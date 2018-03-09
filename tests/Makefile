@@ -6,7 +6,7 @@ CFLAGS += -DPARTICLE_SIMULATOR_THREAD_PARALLEL -fopenmp
 CFLAGS += -DPARTICLE_SIMULATOR_MPI_PARALLEL
 
 # for macports gcc with clang asm
-CFLAGS += -Wa,-q
+# CFLAGS += -Wa,-q
 
 check:
 	make -C DomainInfo CCC="$(CCC)" CFLAGS="$(CFLAGS)" PS_PATH="$(PS_PATH)"
