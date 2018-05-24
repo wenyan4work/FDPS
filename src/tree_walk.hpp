@@ -9,7 +9,7 @@ Scatterモードで粒子の切り捨てを行った場合、EXLETではGATHER�
 信と
  */
 
-#include<particle_simulator.hpp>
+#include"particle_simulator.hpp"
 
 namespace ParticleSimulator{
 
