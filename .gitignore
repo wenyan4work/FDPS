@@ -1,12 +1,14 @@
-**/mainf32
-**/mainf64
+**mainf32
+**mainf64
 mainf32
 mainf64
 .vscode/
 info.plist
 RunTest/
-BugReport/PeriodicSymmetrySearch/SphereTest.X.dSYM
 **.out
 **.dat
 **.o
 **.a
+**.X
+**.dYSM
+**.DS_store

@@ -1,4 +1,3 @@
-
 PS_PATH = ../../src
 
 USERLIB = -lm -lpthread 
@@ -7,11 +6,8 @@ USERINCLUDE =  -I$(PS_PATH)
 CXX=mpicxx
 LINK = $(CXX)
 
-# for MacPorts gcc with clang asm
-CXX += -Wa,-q
-
 # optimized
-CXXFLAGS= -O3 -fopenmp -march=native
+CXXFLAGS= -O3 -march=native
 LINKFLAGS= $(CXXFLAGS) -lm -ldl
 
 # debug
