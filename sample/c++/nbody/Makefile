@@ -1,16 +1,16 @@
 PS_PATH = ../../../src/
 INC = -I$(PS_PATH)
 
-CC = time g++
+CC = mpicxx
 #CC = time mpicxx
-CFLAGS = -O3
-#CFLAGS += -Wall
+CFLAGS = -O3 -std=c++11
+CFLAGS += -Wall
 #CFLAGS += -ffast-math
-#CFLAGS += -funroll-loops
-#CFLAGS += -DPARTICLE_SIMULATOR_THREAD_PARALLEL -fopenmp
-#CFLAGS += -DPARTICLE_SIMULATOR_MPI_PARALLEL
+CFLAGS += -funroll-loops
+CFLAGS += -DPARTICLE_SIMULATOR_THREAD_PARALLEL -fopenmp
+CFLAGS += -DPARTICLE_SIMULATOR_MPI_PARALLEL
 
-#use_phantom_grape_x86 = yes
+use_phantom_grape_x86 = yes
 #use_gpu_cuda = yes
 
 # fdps-autotest-set-vars (DO NOT CHANGE THIS LINE)
