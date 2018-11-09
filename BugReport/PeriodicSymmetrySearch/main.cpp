@@ -69,7 +69,7 @@ class SphereNearForceEPJ {
     void copyFromFP(const SphereFP &fp) {
         gid = fp.gid;
         pos = fp.pos;
-        RSearch = fp.RSearch * 10; // test for EPI/EPJ rsearch differ greatly;
+        RSearch = fp.RSearch; // test for EPI/EPJ rsearch differ greatly;
     }
 };
 
@@ -107,17 +107,18 @@ int main(int argc, char **argv) {
     CalcNearForceEPIJ calcNearForceFtr;
 
     systemSP.setNumberOfParticleLocal(2); // 1 particle only
+    // for the same particle, EPI and EPJ should have the same search radius
     systemSP[0].pos.x = 1;
     systemSP[0].pos.y = 10;
     systemSP[0].pos.z = 10;
     systemSP[0].gid = 0;
-    systemSP[0].RSearch = 1.0; // EPI Rsearch = 1.0, EPJ Rsearch = 10.0
+    systemSP[0].RSearch = 1.0; // EPI Rsearch = 1.0, EPJ Rsearch = 1.0
     systemSP[0].nb.clear();
     systemSP[1].pos.x = 15;
     systemSP[1].pos.y = 10;
     systemSP[1].pos.z = 10;
     systemSP[1].gid = 1;
-    systemSP[1].RSearch = 1.0; // EPI Rsearch = 1.0, EPJ Rsearch = 10.0
+    systemSP[1].RSearch = 10.0; // EPI Rsearch = 10.0, EPJ Rsearch = 10.0
     systemSP[1].nb.clear();
 
     dinfo.initialize(0.5);
@@ -127,8 +128,8 @@ int main(int argc, char **argv) {
     dinfo.decomposeDomainAll(systemSP);
     systemSP.exchangeParticle(dinfo);
 
-    treeSymmetry.initialize(10000);
-    treeScatter.initialize(10000);
+    treeSymmetry.initialize(100);
+    treeScatter.initialize(100);
 
     treeSymmetry.calcForceAllAndWriteBack(calcNearForceFtr, systemSP, dinfo);
     int nbfound = systemSP[0].nb.size();
