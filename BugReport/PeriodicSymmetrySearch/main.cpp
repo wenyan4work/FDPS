@@ -1,5 +1,6 @@
 #include <cassert>
 #include <iostream>
+#include <type_traits>
 #include <vector>
 
 #include "particle_simulator.hpp"
@@ -96,6 +97,11 @@ class CalcNearForceEPIJ {
 };
 
 int main(int argc, char **argv) {
+
+    static_assert(std::is_trivially_destructible<PS::F64vec3>::value);
+    static_assert(std::is_trivially_copyable<PS::F64vec3>::value);
+    static_assert(std::is_trivially_copyable<PS::F64vec2>::value);
+
     PS::Initialize(argc, argv);
 
     PS::ParticleSystem<SphereFP> systemSP;
