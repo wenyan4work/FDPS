@@ -106,7 +106,7 @@ int main(int argc, char **argv) {
     CalcNearForceEPIJ calcNearForceFtr;
 
     if (PS::Comm::getRank() == 0) {
-        systemSP.setNumberOfParticleLocal(4);
+        systemSP.setNumberOfParticleLocal(5);
         // for the same particle, EPI and EPJ should have the same search radius
         systemSP[0].gid = 0;
         systemSP[0].RSearch = 8.22;
@@ -120,9 +120,9 @@ int main(int argc, char **argv) {
         systemSP[3].gid = 3;
         systemSP[3].RSearch = 8.22;
         systemSP[3].setPos(PS::F64vec3(20.7771, 3.96282, 36.4081));
-        systemSP[0].gid = 4;
-        systemSP[0].RSearch = 8.22;
-        systemSP[0].setPos(PS::F64vec3(40.3761, 3.27552, 3.38661));
+        systemSP[4].gid = 4;
+        systemSP[4].RSearch = 8.22;
+        systemSP[4].setPos(PS::F64vec3(40.3761, 3.27552, 3.38661));
     } else {
         systemSP.setNumberOfParticleLocal(0);
     }
