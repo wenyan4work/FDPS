@@ -11,7 +11,7 @@ LINK = $(CXX)
 # LINKFLAGS= $(CXXFLAGS) -lm -ldl
 
 # debug
-CXXFLAGS = -std=c++14 -O0 -qopenmp -g
+CXXFLAGS = -std=c++14 -O3 -qopenmp -std=c++14
 LINKFLAGS= $(CXXFLAGS)
 
 # enable openmp and mpi

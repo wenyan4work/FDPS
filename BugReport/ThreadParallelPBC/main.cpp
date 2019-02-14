@@ -107,9 +107,10 @@ int main(int argc, char **argv) {
 
     PS::TreeForForceShort<forceNearEP, SphereNearForceEP, SphereNearForceEPJ>::Symmetry treeSymmetry;
     PS::TreeForForceShort<forceNearEP, SphereNearForceEP, SphereNearForceEPJ>::Scatter treeScatter;
+    PS::TreeForForceShort<forceNearEP, SphereNearForceEP, SphereNearForceEPJ>::Gather treeGather;
     CalcNearForceEPIJ calcNearForceFtr;
 
-    const int nLocal = 2000000;
+    const int nLocal = 200000;
     systemSP.setNumberOfParticleLocal(nLocal);
 #pragma omp parallel for
     for (int i = 0; i < nLocal; i++) {
@@ -118,11 +119,14 @@ int main(int argc, char **argv) {
         systemSP[i].pos[2] = sin(cos(i)) * 100;
         systemSP[i].RSearch = 10.0;
     }
+    treeSymmetry.initialize(nLocal * 4);
+    treeScatter.initialize(nLocal * 4);
+    treeGather.initialize(nLocal * 4);
 
     PS::Comm::barrier();
 
     dinfo.initialize();
-    dinfo.setBoundaryCondition(PS::BOUNDARY_CONDITION_PERIODIC_XYZ);
+    dinfo.setBoundaryCondition(PS::BOUNDARY_CONDITION_PERIODIC_XY);
     dinfo.setPosRootDomain(PS::F64vec3(0, 0, 0), PS::F64vec3(100, 100, 100));
     systemSP.adjustPositionIntoRootDomain(dinfo);
 
@@ -132,12 +136,16 @@ int main(int argc, char **argv) {
     assert(systemSP.getNumberOfParticleLocal() > 0);
 
     PS::Comm::barrier();
-    treeSymmetry.initialize(nLocal * 4);
-    treeSymmetry.calcForceAllAndWriteBack(calcNearForceFtr, systemSP, dinfo);
+    treeSymmetry.calcForceAll(calcNearForceFtr, systemSP, dinfo);
+    printf("TreeSymmetry complete\n");
 
     PS::Comm::barrier();
-    treeScatter.initialize(nLocal * 4);
-    treeScatter.calcForceAllAndWriteBack(calcNearForceFtr, systemSP, dinfo);
+    treeScatter.calcForceAll(calcNearForceFtr, systemSP, dinfo);
+    printf("TreeScatter complete\n");
+
+    PS::Comm::barrier();
+    treeGather.calcForceAll(calcNearForceFtr, systemSP, dinfo);
+    printf("TreeGather complete\n");
 
     PS::Comm::barrier();
     PS::Finalize();
