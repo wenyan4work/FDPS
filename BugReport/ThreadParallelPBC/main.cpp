@@ -94,6 +94,7 @@ class CalcNearForceEPIJ {
 };
 
 int main(int argc, char **argv) {
+    MPI_Init(&argc, &argv);
     PS::Initialize(argc, argv);
 
     PS::ParticleSystem<SphereFP> systemSP;
@@ -144,5 +145,6 @@ int main(int argc, char **argv) {
 
     PS::Comm::barrier();
     PS::Finalize();
+    MPI_Finalize();
     return 0;
 }
