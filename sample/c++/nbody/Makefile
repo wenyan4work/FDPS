@@ -3,8 +3,8 @@ INC = -I$(PS_PATH)
 
 CC = mpicxx
 #CC = time mpicxx
-CFLAGS = -O3 -std=c++11
-CFLAGS += -Wall
+CFLAGS = -std=c++11 -O3
+#CFLAGS += -Wall
 #CFLAGS += -ffast-math
 CFLAGS += -funroll-loops
 CFLAGS += -DPARTICLE_SIMULATOR_THREAD_PARALLEL -fopenmp
@@ -32,7 +32,7 @@ endif
 ifeq ($(use_gpu_cuda),yes)
 CUDA_HOME = /usr/local/cuda
 #CUDA_HOME = /gwfefs/opt/x86_64/cuda/7.5
-NVCC = time $(CUDA_HOME)/bin/nvcc -Xcompiler="-O3"
+NVCC = time $(CUDA_HOME)/bin/nvcc -std=c++11 -Xcompiler="-std=c++11 -O3"
 INC  += -I$(CUDA_HOME)/samples/common/inc/
 CFLAGS  += -DENABLE_GPU_CUDA
 CLIBS = -L$(CUDA_HOME)/lib64 -lcudart -lgomp
